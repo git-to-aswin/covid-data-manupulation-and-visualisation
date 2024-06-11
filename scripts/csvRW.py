@@ -37,3 +37,10 @@ def append_row_to_csv(file_path, row_data):
     with open(file_path, 'a', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow(row_data)
+
+def read_sql(sql_file_path):
+    with open(sql_file_path, 'r') as file:
+        sql_script = file.read()
+
+    # Split the SQL script into individual queries
+    return sql_script.split(';')
