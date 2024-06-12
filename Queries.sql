@@ -29,15 +29,15 @@ SELECT vc1.Month AS OM1,
  ORDER BY vc1.iso_code;
 
 -- TASK D.2
-SELECT c.location AS Country, months AS Month, dose AS "Cumulative Doses" FROM (SELECT months,
+SELECT c.location AS Country, avg.months AS Month, dose AS "Cumulative Doses" FROM (SELECT tot1.months,
        AVG(dose) AS avgDose
 FROM (SELECT iso_code,
               strftime('%Y-%m', date) AS months,
               SUM(total_vaccinations) AS dose
          FROM vaccination
          GROUP BY iso_code,strftime('%Y-%m', date) 
-       )
-GROUP BY months) AS avg
+       ) AS tot1
+GROUP BY tot1.months) AS avg
 JOIN (SELECT iso_code,
               strftime('%Y-%m', date) AS months,
               SUM(total_vaccinations) AS dose
@@ -74,9 +74,9 @@ FROM (SELECT strftime('%Y-%m', date) AS usaDate, SUM(people_fully_vaccinated) AS
             GROUP BY strftime('%Y-%m', date)) ON canDate = usaDate
       JOIN (SELECT strftime('%Y-%m', date) AS wlsDate, SUM(people_fully_vaccinated) AS wlsVac
             FROM vaccination
-            WHERE date LIKE "2022-%" AND iso_code = "CAN"
+            WHERE date LIKE "2022-%" AND iso_code = "OWID_WLS"
             GROUP BY strftime('%Y-%m', date)) ON wlsDate = usaDate
       JOIN (SELECT strftime('%Y-%m', date) AS dnkDate, SUM(people_fully_vaccinated) AS dnkVac
             FROM vaccination
-            WHERE date LIKE "2022-%" AND iso_code = "CAN"
+            WHERE date LIKE "2022-%" AND iso_code = "DNK"
             GROUP BY strftime('%Y-%m', date)) ON dnkDate = usaDate;
