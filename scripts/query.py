@@ -1,6 +1,6 @@
 import sqlite3
 
-database = "../TryVaccinations.db"
+database = "../Vaccinations.db"
 
 def queryDB(query,param=None):
     try:
