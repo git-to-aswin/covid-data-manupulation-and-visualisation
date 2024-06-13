@@ -18,4 +18,4 @@ Capturing the real time data of covid vaccine and we try to clean the data and b
     - source venv/bin/activate
     - pip install -r requirements.txt
     - pip freeze > requirements.txt (if any new packet is added)
--   Starting file is in [scripts](./scripts/dataPipeline.ipynb)
+-   Starting file is in [notebook](./notebook/dataPipeline.ipynb)
