@@ -1,6 +1,6 @@
 import sqlite3
 
-database = "../Vaccinations.db"
+database = "../TryVaccinations.db"
 
 def queryDB(query,param=None):
     try:
@@ -33,5 +33,6 @@ def queryFile(filePath):
         # Commit changes and close the connection
         conn.commit()
         cur.close()
+        print("successfully created teh database")
     except sqlite3.Error as e:
         print(e)
